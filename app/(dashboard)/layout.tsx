@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation";
 
 import { AppShell } from "@/components/layout/app-shell";
-import { ensureProfileForUser } from "@/lib/auth/profile";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { ensureProfileForCurrentUser, getUserWorkspaces } from "@/lib/supabase/workspaces";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createSupabaseServerClient();
@@ -14,7 +14,8 @@ export default async function DashboardLayout({ children }: { children: React.Re
     redirect("/login");
   }
 
-  await ensureProfileForUser(user);
+  await ensureProfileForCurrentUser();
+  const workspaces = await getUserWorkspaces();
 
-  return <AppShell>{children}</AppShell>;
+  return <AppShell initialWorkspaces={workspaces}>{children}</AppShell>;
 }

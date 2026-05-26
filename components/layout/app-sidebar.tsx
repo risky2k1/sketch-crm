@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Building2, BriefcaseBusiness, LayoutDashboard, NotebookPen, Settings, Users, CheckSquare } from "lucide-react";
+import { Building2, BriefcaseBusiness, LayoutDashboard, NotebookPen, Settings, Users, CheckSquare, FolderKanban } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
+import { WorkspaceSwitcher } from "@/components/workspace/workspace-switcher";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/workspaces", label: "Workspaces", icon: FolderKanban },
   { href: "/companies", label: "Companies", icon: Building2 },
   { href: "/people", label: "People", icon: Users },
   { href: "/deals", label: "Deals", icon: BriefcaseBusiness },
@@ -23,13 +24,7 @@ export function AppSidebar({ className }: { className?: string }) {
   return (
     <aside className={cn("w-72 shrink-0 border-r border-sidebar-border bg-sidebar", className)}>
       <div className="flex h-full flex-col p-4">
-        <div className="rounded-xl border border-border/80 bg-card px-3 py-3 shadow-xs">
-          <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">Workspace</p>
-          <div className="mt-1 flex items-center justify-between">
-            <p className="text-sm font-semibold">Sketch CRM</p>
-            <Badge variant="secondary">MVP</Badge>
-          </div>
-        </div>
+        <WorkspaceSwitcher />
 
         <nav className="mt-6 space-y-1">
           {navItems.map((item) => {
