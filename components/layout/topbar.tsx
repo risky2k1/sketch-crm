@@ -1,8 +1,9 @@
 "use client";
 
-import { Bell, Command, LogOut, Menu, Search } from "lucide-react";
+import { Command, LogOut, Menu, Search } from "lucide-react";
 
 import { logoutAction } from "@/app/(auth)/actions";
+import { NotificationBell } from "@/components/layout/notification-bell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -25,9 +26,7 @@ export function Topbar({ onMenuClick }: { onMenuClick?: () => void }) {
         </div>
 
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="outline" size="icon" aria-label="Notifications">
-            <Bell className="size-4" />
-          </Button>
+          <NotificationBell />
           <Button size="sm" className="hidden sm:inline-flex">New Record</Button>
           <form action={logoutAction}>
             <Button variant="outline" size="sm" type="submit">

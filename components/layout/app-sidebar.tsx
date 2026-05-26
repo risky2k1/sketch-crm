@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Building2, BriefcaseBusiness, LayoutDashboard, NotebookPen, Settings, Users, CheckSquare, FolderKanban, PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
+import { Building2, BriefcaseBusiness, CalendarDays, LayoutDashboard, NotebookPen, Settings, Users, CheckSquare, FolderKanban, PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
 
 import { WorkspaceSwitcher } from "@/components/workspace/workspace-switcher";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ const navItems = [
   { href: "/people", label: "People", icon: Users },
   { href: "/deals", label: "Deals", icon: BriefcaseBusiness },
   { href: "/tasks", label: "Tasks", icon: CheckSquare },
+  { href: "/calendar", label: "Calendar", icon: CalendarDays },
   { href: "/notes", label: "Notes", icon: NotebookPen },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
