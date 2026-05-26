@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Command, LogOut, Search } from "lucide-react";
+import { Bell, Command, LogOut, Menu, Search } from "lucide-react";
 
 import { logoutAction } from "@/app/(auth)/actions";
 import { Button } from "@/components/ui/button";
@@ -10,8 +10,8 @@ export function Topbar({ onMenuClick }: { onMenuClick?: () => void }) {
   return (
     <header className="sticky top-0 z-20 border-b border-border/80 bg-background/95 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-background/70 md:px-6">
       <div className="flex items-center gap-3">
-        <Button variant="outline" size="sm" className="md:hidden" onClick={onMenuClick}>
-          Menu
+        <Button variant="outline" size="icon" className="md:hidden transition-all duration-200 ease-out hover:scale-[1.02]" onClick={onMenuClick} aria-label="Open menu">
+          <Menu className="size-4" />
         </Button>
 
         <div className="hidden max-w-md flex-1 items-center gap-2 md:flex">
