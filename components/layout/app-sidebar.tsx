@@ -1,39 +1,68 @@
+"use client";
+
 import Link from "next/link";
-import { Building2, ClipboardList, LayoutDashboard, NotebookPen, Settings, Users } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Building2, BriefcaseBusiness, LayoutDashboard, NotebookPen, Settings, Users, CheckSquare } from "lucide-react";
+
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/companies", label: "Companies", icon: Building2 },
   { href: "/people", label: "People", icon: Users },
-  { href: "/deals", label: "Deals", icon: ClipboardList },
-  { href: "/tasks", label: "Tasks", icon: ClipboardList },
+  { href: "/deals", label: "Deals", icon: BriefcaseBusiness },
+  { href: "/tasks", label: "Tasks", icon: CheckSquare },
   { href: "/notes", label: "Notes", icon: NotebookPen },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 
-export function AppSidebar() {
+export function AppSidebar({ className }: { className?: string }) {
+  const pathname = usePathname();
+
   return (
-    <aside className="hidden w-64 shrink-0 border-r border-border bg-sidebar md:block">
+    <aside className={cn("w-72 shrink-0 border-r border-sidebar-border bg-sidebar", className)}>
       <div className="flex h-full flex-col p-4">
-        <div className="rounded-xl border border-border/80 bg-card px-3 py-2">
-          <p className="text-xs text-muted-foreground">Workspace</p>
-          <p className="font-medium">Sketch CRM</p>
+        <div className="rounded-xl border border-border/80 bg-card px-3 py-3 shadow-xs">
+          <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">Workspace</p>
+          <div className="mt-1 flex items-center justify-between">
+            <p className="text-sm font-semibold">Sketch CRM</p>
+            <Badge variant="secondary">MVP</Badge>
+          </div>
         </div>
+
         <nav className="mt-6 space-y-1">
           {navItems.map((item) => {
             const Icon = item.icon;
+            const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                className={cn(
+                  "group relative flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors",
+                  isActive
+                    ? "border border-primary/30 bg-primary/10 text-foreground"
+                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                )}
               >
-                <Icon className="size-4" />
-                {item.label}
+                {isActive ? (
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 rounded-lg border border-dashed border-primary/35"
+                  />
+                ) : null}
+                <Icon className="relative z-10 size-4" />
+                <span className="relative z-10">{item.label}</span>
               </Link>
             );
           })}
         </nav>
+
+        <div className="mt-auto rounded-xl border border-border bg-card p-3">
+          <p className="text-xs font-medium">Quick Note</p>
+          <p className="mt-1 text-xs text-muted-foreground">Activities and timeline modules come next.</p>
+        </div>
       </div>
     </aside>
   );

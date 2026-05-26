@@ -1,14 +1,32 @@
-import { Search } from "lucide-react";
+import { Bell, Command, Search } from "lucide-react";
 
-export function Topbar() {
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+export function Topbar({ onMenuClick }: { onMenuClick?: () => void }) {
   return (
-    <header className="sticky top-0 z-10 border-b border-border bg-background/90 px-4 py-3 backdrop-blur">
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2 rounded-md border border-border bg-card px-3 py-2 text-sm text-muted-foreground">
-          <Search className="size-4" />
-          <span>Search (coming soon)</span>
+    <header className="sticky top-0 z-20 border-b border-border/80 bg-background/95 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-background/70 md:px-6">
+      <div className="flex items-center gap-3">
+        <Button variant="outline" size="sm" className="md:hidden" onClick={onMenuClick}>
+          Menu
+        </Button>
+
+        <div className="hidden max-w-md flex-1 items-center gap-2 md:flex">
+          <div className="relative w-full">
+            <Search className="text-muted-foreground absolute top-1/2 left-3 size-4 -translate-y-1/2" />
+            <Input className="pl-9" placeholder="Search people, deals, tasks..." />
+          </div>
+          <Button variant="outline" size="sm" className="gap-1 text-xs text-muted-foreground">
+            <Command className="size-3.5" />K
+          </Button>
         </div>
-        <button className="rounded-md border border-border bg-card px-3 py-2 text-sm">User Menu</button>
+
+        <div className="ml-auto flex items-center gap-2">
+          <Button variant="outline" size="icon" aria-label="Notifications">
+            <Bell className="size-4" />
+          </Button>
+          <Button size="sm">New Record</Button>
+        </div>
       </div>
     </header>
   );
