@@ -6,8 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function SketchCompaniesEmpty() {
   return (
-    <Card className="relative overflow-hidden border-primary/30">
-      <span aria-hidden className="pointer-events-none absolute inset-0 rounded-xl border border-dashed border-primary/35" />
+    <Card variant="sketch" className="relative overflow-hidden border-primary/30 sketch-surface">
+      <span aria-hidden className="pointer-events-none absolute -right-3 top-3 h-8 w-14 rotate-6 rounded bg-primary/20" />
       <CardHeader>
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Sketch Accent</p>
         <CardTitle className="flex items-center gap-2">
@@ -19,7 +19,7 @@ export function SketchCompaniesEmpty() {
         <p className="text-sm text-muted-foreground">
           Create your first company to start tracking accounts, people, and opportunities.
         </p>
-        <Link href="/companies/new" className={buttonVariants()}>
+        <Link href="/companies/new" className={buttonVariants({ variant: "sketch" })}>
           Create company
         </Link>
       </CardContent>

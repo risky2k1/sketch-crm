@@ -117,9 +117,96 @@
 
   body {
     @apply bg-background text-foreground transition-colors duration-300;
+    background-image:
+      radial-gradient(circle at 20% 20%, color-mix(in oklch, var(--foreground) 4%, transparent) 0.45px, transparent 0.45px),
+      radial-gradient(circle at 80% 10%, color-mix(in oklch, var(--foreground) 3%, transparent) 0.5px, transparent 0.5px);
+    background-size: 28px 28px, 36px 36px;
   }
 
   html {
     @apply font-sans;
+  }
+}
+
+@layer components {
+  .sketch-card {
+    @apply relative overflow-hidden border-border/90 bg-card;
+    box-shadow: 0 1px 0 color-mix(in oklch, var(--foreground) 22%, transparent);
+  }
+
+  .sketch-card::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 rounded-[inherit] border border-dashed border-foreground/20;
+  }
+
+  .sketch-card::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 rounded-[inherit] border border-foreground/15;
+    transform: translate(1px, 1px) rotate(-0.25deg);
+  }
+
+  .sketch-surface {
+    @apply relative;
+  }
+
+  .sketch-surface::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 rounded-[inherit];
+    background-image: repeating-linear-gradient(
+      -8deg,
+      color-mix(in oklch, var(--foreground) 7%, transparent) 0,
+      color-mix(in oklch, var(--foreground) 7%, transparent) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+    opacity: 0.05;
+  }
+
+  .crm-calendar .fc-theme-standard td,
+  .crm-calendar .fc-theme-standard th,
+  .crm-calendar .fc-scrollgrid {
+    border-color: color-mix(in oklch, var(--border) 75%, transparent);
+  }
+
+  .crm-calendar .fc .fc-toolbar-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .crm-calendar .fc .fc-button {
+    border: 1px solid color-mix(in oklch, var(--border) 85%, transparent);
+    background: color-mix(in oklch, var(--card) 85%, var(--background));
+    color: var(--foreground);
+    box-shadow: 1px 1px 0 color-mix(in oklch, var(--foreground) 18%, transparent);
+  }
+
+  .crm-calendar .fc .fc-button-active,
+  .crm-calendar .fc .fc-button:focus-visible {
+    background: color-mix(in oklch, var(--primary) 28%, var(--card));
+    border-color: color-mix(in oklch, var(--primary) 55%, var(--border));
+  }
+
+  .crm-calendar .fc .fc-daygrid-day.fc-day-today {
+    background: color-mix(in oklch, var(--primary) 14%, transparent);
+  }
+
+  .crm-calendar .fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+    border-radius: 6px;
+    background: color-mix(in oklch, var(--primary) 24%, var(--card));
+    padding: 1px 6px;
+  }
+
+  .crm-calendar .fc .fc-event {
+    border-style: dashed;
+    border-color: color-mix(in oklch, var(--foreground) 28%, transparent);
+    background: color-mix(in oklch, var(--primary) 20%, var(--card));
+    color: var(--foreground);
+    box-shadow: 1px 1px 0 color-mix(in oklch, var(--foreground) 16%, transparent);
+    transform: rotate(-0.2deg);
+  }
+
+  .crm-calendar .fc .fc-list-empty {
+    background: transparent;
   }
 }

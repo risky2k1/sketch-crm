@@ -14,7 +14,7 @@ const metrics = [
 export default function DashboardPage() {
   return (
     <div className="space-y-6">
-      <section className="rounded-xl border border-border bg-card p-5">
+      <section className="sketch-card rounded-xl p-5">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Workspace Overview</p>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
           <div>
@@ -33,7 +33,7 @@ export default function DashboardPage() {
         {metrics.map((item) => {
           const Icon = item.icon;
           return (
-            <Card key={item.label}>
+            <Card key={item.label} variant="sketch">
               <CardHeader className="flex flex-row items-start justify-between gap-2 space-y-0">
                 <div>
                   <CardDescription>{item.label}</CardDescription>

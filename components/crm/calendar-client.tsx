@@ -221,14 +221,14 @@ export function CalendarClient() {
 
   return (
     <div className="space-y-4">
-      <section className="rounded-xl border border-border bg-card p-5">
+      <section className="sketch-card rounded-xl p-5">
         <h1 className="text-2xl font-semibold tracking-tight">Calendar</h1>
         <p className="mt-1 text-sm text-muted-foreground">{title} • month / week / day / list views with reminders.</p>
       </section>
 
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
 
-      <section className="overflow-hidden rounded-xl border border-border bg-card p-3">
+      <section className="sketch-card crm-calendar overflow-hidden rounded-xl p-3">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin, rrulePlugin]}
           initialView="dayGridMonth"
@@ -249,7 +249,13 @@ export function CalendarClient() {
           dayCellContent={(arg) => (
             <div className="flex flex-col">
               <span>{arg.dayNumberText.replace("日", "")}</span>
-              <span className="text-[10px] text-muted-foreground">{formatLunarShort(arg.date)}</span>
+              <span className="text-[10px] text-muted-foreground/70">{formatLunarShort(arg.date)}</span>
+            </div>
+          )}
+          noEventsContent={() => (
+            <div className="my-6 rounded-lg border border-dashed border-border/70 bg-muted/20 p-4 text-sm text-muted-foreground">
+              <p className="font-medium text-foreground">No events yet</p>
+              <p className="mt-1">Start by adding your first reminder or meeting.</p>
             </div>
           )}
           height="auto"
@@ -258,7 +264,7 @@ export function CalendarClient() {
 
       {open ? (
         <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/25 p-4">
-          <div className="w-full max-w-lg rounded-xl border border-border bg-background p-4 shadow-xl">
+          <div className="sketch-card w-full max-w-lg rounded-xl bg-background p-4 shadow-xl">
             <h2 className="text-lg font-semibold">{form.id ? "Edit Event" : "New Event"}</h2>
             <div className="mt-3 grid gap-3">
               <Input value={form.title} onChange={(e) => setForm((s) => ({ ...s, title: e.target.value }))} placeholder="Title" />
@@ -271,7 +277,7 @@ export function CalendarClient() {
               <Input value={form.reminders} onChange={(e) => setForm((s) => ({ ...s, reminders: e.target.value }))} placeholder="Reminder minutes: 10,60,1440" />
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Button onClick={submit}>{form.id ? "Update" : "Create"}</Button>
+              <Button variant="sketch" onClick={submit}>{form.id ? "Update" : "Create"}</Button>
               {form.id ? <Button variant="destructive" onClick={remove}>Delete</Button> : null}
               <Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
             </div>

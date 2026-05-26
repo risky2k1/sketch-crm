@@ -5,8 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 export function SketchEmptyState() {
   return (
-    <Card className="relative overflow-hidden border-primary/30">
-      <span aria-hidden className="pointer-events-none absolute inset-0 rounded-xl border border-dashed border-primary/35" />
+    <Card variant="sketch" className="relative overflow-hidden border-primary/30 sketch-surface">
+      <span aria-hidden className="pointer-events-none absolute -right-3 top-3 h-8 w-14 rotate-6 rounded bg-primary/20" />
       <CardHeader>
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Sketch Accent</p>
         <CardTitle>Nothing in your timeline yet</CardTitle>
@@ -15,7 +15,7 @@ export function SketchEmptyState() {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-wrap items-center gap-2">
-        <Button size="sm">
+        <Button size="sm" variant="sketch">
           <Plus className="size-4" />
           Add Company
         </Button>

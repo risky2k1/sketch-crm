@@ -15,7 +15,7 @@ export function SectionCard({
   selected?: boolean;
 }) {
   return (
-    <Card className={cn("relative", selected ? "border-primary/40 bg-primary/5" : "") }>
+    <Card variant="sketch" className={cn("relative", selected ? "border-primary/40 bg-primary/5" : "") }>
       {selected ? (
         <span aria-hidden className="pointer-events-none absolute inset-0 rounded-xl border border-dashed border-primary/35" />
       ) : null}
