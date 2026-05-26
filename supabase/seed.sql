@@ -1,0 +1,1 @@
+-- Seed data placeholder. Supabase schema and seed will be added in a later step.

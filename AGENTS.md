@@ -42,6 +42,7 @@ your-crm/
 
 Use this stack unless explicitly instructed otherwise:
 
+- pnpm as the required package manager
 - Next.js App Router
 - TypeScript
 - React
@@ -62,6 +63,22 @@ Use this stack unless explicitly instructed otherwise:
 
 Avoid introducing heavy dependencies unless there is a clear benefit.
 
+---
+
+## Package Manager
+
+Use pnpm as the only package manager for this project.
+
+Rules:
+
+- Use `pnpm install` to install dependencies.
+- Use `pnpm add <package>` to add runtime dependencies.
+- Use `pnpm add -D <package>` to add dev dependencies.
+- Use `pnpm dev` to run the development server.
+- Use `pnpm lint`, `pnpm typecheck`, and `pnpm build` for checks.
+- Do not use npm, yarn, or bun unless explicitly instructed.
+- Do not create `package-lock.json`, `yarn.lock`, or `bun.lockb`.
+- Keep `pnpm-lock.yaml` committed.
 ---
 
 ## Deployment Target
@@ -706,9 +723,9 @@ At minimum:
 Recommended commands:
 
 ```bash
-npm run lint
-npm run typecheck
-npm run build
+pnpm lint
+pnpm typecheck
+pnpm build
 ```
 
 If these scripts do not exist, add them.
