@@ -1,5 +1,8 @@
-import { Bell, Command, Search } from "lucide-react";
+"use client";
 
+import { Bell, Command, LogOut, Search } from "lucide-react";
+
+import { logoutAction } from "@/app/(auth)/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -25,7 +28,13 @@ export function Topbar({ onMenuClick }: { onMenuClick?: () => void }) {
           <Button variant="outline" size="icon" aria-label="Notifications">
             <Bell className="size-4" />
           </Button>
-          <Button size="sm">New Record</Button>
+          <Button size="sm" className="hidden sm:inline-flex">New Record</Button>
+          <form action={logoutAction}>
+            <Button variant="outline" size="sm" type="submit">
+              <LogOut className="size-4" />
+              Logout
+            </Button>
+          </form>
         </div>
       </div>
     </header>
