@@ -33,13 +33,14 @@ export function AppSidebar({ className, collapsed = false, onToggleCollapse, onN
   return (
     <aside className={cn("shrink-0 border-r border-sidebar-border bg-sidebar transition-[width,transform] duration-300 ease-out", collapsed ? "w-20" : "w-72", className)}>
       <div className="flex h-full flex-col p-4">
-        <div className="mb-3 flex items-center justify-between">
-          {isMobile ? (
-            <p className="text-sm font-semibold">Menu</p>
-          ) : (
-            <p className={cn("text-sm font-semibold transition-opacity", collapsed && "opacity-0")}>Workspace</p>
-          )}
-          <Button variant="ghost" size="icon" onClick={isMobile ? onNavigate : onToggleCollapse} aria-label={isMobile ? "Close menu" : collapsed ? "Expand sidebar" : "Collapse sidebar"}>
+        <div className={cn("mb-3 flex items-center", collapsed && !isMobile ? "justify-center" : "justify-between")}>
+          {!collapsed || isMobile ? <p className="text-sm font-semibold">{isMobile ? "Menu" : "Workspace"}</p> : null}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={isMobile ? onNavigate : onToggleCollapse}
+            aria-label={isMobile ? "Close menu" : collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          >
             {isMobile ? <X className="size-4" /> : collapsed ? <PanelLeftOpen className="size-4" /> : <PanelLeftClose className="size-4" />}
           </Button>
         </div>
