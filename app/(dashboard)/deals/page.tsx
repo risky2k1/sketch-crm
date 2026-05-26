@@ -1,3 +1,9 @@
+import { ModuleHeader } from "@/components/layout/module-header";
+
 export default function DealsPage() {
-  return <h1 className="text-xl font-semibold">Deals</h1>;
+  return (
+    <div className="space-y-4">
+      <ModuleHeader title="Deals" prefix="CRM" />
+    </div>
+  );
 }

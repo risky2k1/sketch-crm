@@ -1,3 +1,9 @@
+import { ModuleHeader } from "@/components/layout/module-header";
+
 export default function PeoplePage() {
-  return <h1 className="text-xl font-semibold">People</h1>;
+  return (
+    <div className="space-y-4">
+      <ModuleHeader title="People" prefix="CRM" />
+    </div>
+  );
 }

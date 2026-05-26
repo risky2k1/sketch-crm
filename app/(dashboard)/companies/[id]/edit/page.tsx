@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { CompanyForm } from "@/components/crm/company-form";
+import { ModuleHeader } from "@/components/layout/module-header";
 import { updateCompanyAction } from "@/features/companies/actions";
 import { getCompanyById } from "@/features/companies/queries";
 
@@ -14,7 +15,7 @@ export default async function EditCompanyPage({ params }: { params: Promise<{ id
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold tracking-tight">Edit Company</h1>
+      <ModuleHeader title="Edit Company" prefix="CRM" />
       <CompanyForm
         title={company.name}
         description="Update company profile fields in your workspace."

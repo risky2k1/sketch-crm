@@ -1,6 +1,7 @@
 import { ChartNoAxesColumn, CircleCheckBig, Handshake, Users } from "lucide-react";
 
 import { SectionCard } from "@/components/crm/section-card";
+import { ModuleHeader } from "@/components/layout/module-header";
 import { SketchEmptyState } from "@/components/sketch/sketch-empty-state";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -14,20 +15,15 @@ const metrics = [
 export default function DashboardPage() {
   return (
     <div className="space-y-6">
-      <section className="sketch-card rounded-xl p-5">
-        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Workspace Overview</p>
-        <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Clean CRM shell with modular foundations and subtle sketch direction.
-            </p>
-          </div>
+      <ModuleHeader
+        title="Dashboard"
+        prefix="Workspace"
+        rightSlot={
           <span className="rounded-md border border-dashed border-primary/35 bg-primary/10 px-2 py-1 text-xs font-medium">
             Early Access
           </span>
-        </div>
-      </section>
+        }
+      />
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {metrics.map((item) => {

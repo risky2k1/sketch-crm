@@ -1,10 +1,11 @@
 import { CompanyForm } from "@/components/crm/company-form";
+import { ModuleHeader } from "@/components/layout/module-header";
 import { createCompanyAction } from "@/features/companies/actions";
 
 export default function NewCompanyPage() {
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold tracking-tight">Create Company</h1>
+      <ModuleHeader title="Create Company" prefix="CRM" />
       <CompanyForm
         title="New company"
         description="Add a company to your workspace."

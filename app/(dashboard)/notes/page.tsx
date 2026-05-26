@@ -1,3 +1,9 @@
+import { ModuleHeader } from "@/components/layout/module-header";
+
 export default function NotesPage() {
-  return <h1 className="text-xl font-semibold">Notes</h1>;
+  return (
+    <div className="space-y-4">
+      <ModuleHeader title="Notes" prefix="CRM" />
+    </div>
+  );
 }

@@ -11,6 +11,7 @@ import type { DateSelectArg, EventApi, EventClickArg, EventDropArg, EventInput }
 
 import { formatLunarShort } from "@/lib/lunar-calendar";
 import { useWorkspace } from "@/components/workspace/workspace-provider";
+import { ModuleHeader } from "@/components/layout/module-header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -221,10 +222,7 @@ export function CalendarClient() {
 
   return (
     <div className="space-y-4">
-      <section className="sketch-card rounded-xl p-5">
-        <h1 className="text-2xl font-semibold tracking-tight">Calendar</h1>
-        <p className="mt-1 text-sm text-muted-foreground">{title} • month / week / day / list views with reminders.</p>
-      </section>
+      <ModuleHeader title="Calendar" workspaceName={title} />
 
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
 

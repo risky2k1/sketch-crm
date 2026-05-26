@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Pencil } from "lucide-react";
 
 import { CompanyDeleteButton } from "@/components/crm/company-delete-button";
+import { ModuleHeader } from "@/components/layout/module-header";
 import { SketchCompaniesEmpty } from "@/components/sketch/sketch-companies-empty";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -25,16 +26,15 @@ export default async function CompaniesPage() {
 
   return (
     <div className="space-y-6">
-      <section className="flex items-end justify-between gap-3 rounded-xl border border-border bg-card p-5">
-        <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">CRM Module</p>
-          <h1 className="mt-2 text-2xl font-semibold tracking-tight">Companies</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Manage organizations in your current workspace.</p>
-        </div>
-        <Link href="/companies/new" className={buttonVariants()}>
-          Create company
-        </Link>
-      </section>
+      <ModuleHeader
+        title="Companies"
+        prefix="CRM"
+        rightSlot={
+          <Link href="/companies/new" className={buttonVariants({ variant: "sketch", size: "sm" })}>
+            Create company
+          </Link>
+        }
+      />
 
       {companies.length === 0 ? (
         <SketchCompaniesEmpty />
