@@ -1,14 +1,5 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
-function slugify(value: string) {
-  return value
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 48);
-}
-
 export async function getOrCreateCurrentWorkspaceId(userId: string, fallbackEmail?: string | null) {
   const supabase = await createSupabaseServerClient();
 
@@ -25,24 +16,14 @@ export async function getOrCreateCurrentWorkspaceId(userId: string, fallbackEmai
   }
 
   const seed = fallbackEmail?.split("@")[0] || "workspace";
-  const baseSlug = slugify(`${seed}-workspace`) || "workspace";
-  const slug = `${baseSlug}-${Math.random().toString(36).slice(2, 8)}`;
-
+  const workspaceName = `${seed.charAt(0).toUpperCase()}${seed.slice(1)} Workspace`;
   const { data: workspace, error } = await supabase
-    .from("workspaces")
-    .insert({
-      name: `${seed.charAt(0).toUpperCase()}${seed.slice(1)} Workspace`,
-      slug,
-      owner_id: userId,
-      created_by: userId,
-      updated_by: userId,
-    })
-    .select("id")
+    .rpc("create_workspace", { workspace_name: workspaceName })
     .single();
 
   if (error || !workspace) {
     throw new Error(error?.message || "Unable to create workspace.");
   }
 
-  return workspace.id;
+  return (workspace as { id: string }).id;
 }
